@@ -1,0 +1,81 @@
+html,
+body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    margin: 0;
+    min-height: 180px;
+    padding: 0;
+    width: 384px;
+}
+
+h2 {
+    font-family: "Menlo", monospace;
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0;
+    color: #2f5876;
+    margin-left: 10%;
+}
+
+a:link,
+a:visited {
+    color: #000000;
+    outline: 0;
+    text-decoration: none;
+}
+
+.modal-header {
+    align-items: center;
+    border-bottom: 0.5px solid #dadada;
+}
+
+.modal-content {
+    padding: 0 22px;
+}
+
+.modal-footer {
+    border-top: 0.5px solid #dadada;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 22px;
+}
+
+.flex {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+    width: 120px;
+}
+
+.flex:hover {
+    opacity: 0.4;
+}
+
+.flex .fa {
+    font-size: 40px;
+    color: #2f5876;
+}
+
+.feature {
+    display: flex;
+}
+
+.feature label {
+    margin-top: 1.5%;
+    margin-left: 2%;
+}
+
+#darkMode {
+    margin-top: 3%;
+    width: auto;
+    height: auto;
+}
+
+#version {
+    font-size: 12px;
+}
