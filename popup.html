@@ -6,6 +6,10 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="popup.css" rel="stylesheet" type="text/css" />
+    <link href="darkmode.css" rel="stylesheet" type="text/css" />
+    <script src="jquery.min.js"></script>
+    <script src="cookie.min.js"></script>
+        <script src="popup.js"></script>
   </head>
   <body>
     <div class="modal-header">
@@ -13,8 +17,7 @@
     </div>
     <div class="modal-content">
         <div class="feature">
-            <input type="checkbox" id="darkMode">
-            <label for="darkMode">Dark Mode</label>
+          <button class="btn btn-dark" id="toggleDarkMode">Toggle Dark Mode</button>
         </div>
     </div>
     <div class="modal-footer">

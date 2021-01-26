@@ -9,13 +9,17 @@
     "default_popup": "popup.html"
   },
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "tabs"
   ],
   "background": {
     "scripts": [
-      "jquery.min.js", 
+      "jquery.min.js",
       "cookie.min.js",
       "popup.js"
+    ],
+    "css": [
+      "darkmode.css"
     ],
     "persistent": false
   },
@@ -24,9 +28,12 @@
       "matches": [ "<all_urls>" ],
       "js": [ 
         "jquery.min.js",
-        "cookie.min.js", 
+        "cookie.min.js",
         "popup.js"
-       ]
+       ],
+       "css": [
+        "darkmode.css"
+      ]
     }
   ]
 }

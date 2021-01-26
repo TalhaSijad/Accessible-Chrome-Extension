@@ -70,10 +70,8 @@ a:visited {
     margin-left: 2%;
 }
 
-#darkMode {
-    margin-top: 3%;
-    width: auto;
-    height: auto;
+#toggleDarkMode {
+    margin-left: 30%;
 }
 
 #version {

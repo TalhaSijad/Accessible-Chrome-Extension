@@ -1,32 +1,26 @@
-// $(document).ready(function () {
-//     function modifyDOM() {
-    //     if ($('#darkMode').checked) {
-    //         document.body.style.backgroundColor = "red";
-    //     } else {
-    //         document.body.style.backgroundColor = "green";
-    //     }
-    // }
-
-    // $('#darkMode').click(function () {
-    //     chrome.tabs.executeScript({
-    //         code: 'Cookies.set("Dark-Mode-for-Liverpool-FC-News", "Enabled")'
-    //     });
-    // });
-// });
-
-$(document).ready(function () {
-    // console.log("ready to go la")
-    // Cookies.set('TESTTTT', 'VALUEEEEE')
-
-    $('#darkMode').click(function () {
-        if ($(this).is(':checked')) {
-            document.body.style.backgroundColor = "red";
-        } else {
-            document.body.style.backgroundColor = "green";
-        }
-
-        // chrome.tabs.executeScript({
-        //     code: 'Cookies.set("Dark-Mode-for-Liverpool-FC-News", "Enabled")'
-        // });
-    });
+$(document).ready(function() {
+  if (!!Cookies.get('Dark-Mode-for-Accessibility-Assistant', 'Enabled')) {
+    document.body.classList.toggle('dark');
+  }
 });
+
+function toggleDarkMode() {
+  if (!!Cookies.get('Dark-Mode-for-Accessibility-Assistant', 'Enabled')) {
+    Cookies.remove('Dark-Mode-for-Accessibility-Assistant');
+  } else {
+    Cookies.set('Dark-Mode-for-Accessibility-Assistant', 'Enabled')
+  }
+
+  location.reload();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var checkPageButton = document.getElementById('toggleDarkMode');
+  checkPageButton.addEventListener('click', function() {
+    chrome.tabs.getSelected(null, function(tab) {
+      chrome.tabs.executeScript({
+        code: '('  + toggleDarkMode + ')()'
+      });
+    });
+  }, false);
+}, false);
