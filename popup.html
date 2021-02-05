@@ -16,9 +16,23 @@
       <h2>Accessibility Assistant</h2>
     </div>
     <div class="modal-content">
-        <div class="feature">
-          <button class="btn btn-dark" id="toggleDarkMode">Toggle Dark Mode</button>
-        </div>
+      <br>
+      <div class="feature">
+        <button class="btn btn-dark" id="toggleDarkMode">Toggle Dark Mode</button>
+      </div>
+      <br>
+      <div class="feature">
+        <label for="highlightElementPicker">Highlight:</label>
+        &nbsp;
+        <select class="form-control" id="highlightElementPicker">
+          <option disabled selected>Select an element</option>
+          <option value="1">Inputs</option>
+          <option value="2">Buttons</option>
+        </select>
+        &nbsp;
+        <button class="btn btn-danger" id="resetElements">Reset</button>
+      </div>
+      <br>
     </div>
     <div class="modal-footer">
         <span id="version">Version 1.0.0</span>
