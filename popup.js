@@ -68,3 +68,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }, false);
 }, false);
+
+// Screen Reader:
+$('a').on('keyup', function(e) {
+  speechSynthesis.cancel();
+  let element = '';
+
+  // If the button pressed is the Tab key.
+  if (e.which == 9) {
+    if ($(this).attr('aria-label')) {
+      element += $(this).attr('aria-label');
+    }
+
+    var readElement = new SpeechSynthesisUtterance(element);
+    window.speechSynthesis.speak(readElement); 
+  }
+});
