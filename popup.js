@@ -70,17 +70,29 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 // Screen Reader:
-$('a').on('keyup', function(e) {
+$(document).keyup(function(e) {
   speechSynthesis.cancel();
   let element = '';
 
   // If the button pressed is the Tab key.
-  if (e.which == 9) {
-    if ($(this).attr('aria-label')) {
-      element += $(this).attr('aria-label');
+  if (e.key == 'Tab') {
+    if ($(e.target).attr('aria-label')) {
+      element += $(e.target).attr('aria-label');
+    } else if ($('label[for="' + $(e.target).attr('id') + '"]').text() != "") {
+      element += ". " + $('label[for="' + $(e.target).attr('id') + '"]').text();
+    } else {
+      element += $(e.target).text();
     }
 
-    var readElement = new SpeechSynthesisUtterance(element);
-    window.speechSynthesis.speak(readElement); 
+    if ($(e.target)[0].nodeName == "A") {
+      element += ". Link";
+    } else if ($(e.target)[0].nodeName == "INPUT") {
+      element += ". Input";
+    } else if ($(e.target)[0].nodeName == "BUTTON" || $(e.target).attr('role') == 'button') {
+      element += ". Button";
+    }
+
+    let readElement = new SpeechSynthesisUtterance(element);
+    window.speechSynthesis.speak(readElement);
   }
 });
