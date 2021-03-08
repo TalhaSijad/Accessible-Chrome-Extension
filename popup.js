@@ -21,15 +21,38 @@ function toggleElementHighlight(opt) {
     var inputs = document.getElementsByTagName('input');
 
     for (i = 0; i < inputs.length; i++) {
-        inputs[i].setAttribute("style", "border: 3px solid green");
+      inputs[i].setAttribute("style", "border: 3px solid green");
     }  
-  } else {
+  } else if (opt == 2) {
     var buttons = document.getElementsByTagName('button');
 
     for (i = 0; i < buttons.length; i++) {
-        buttons[i].setAttribute("style", "border: 3px solid red");
+      buttons[i].setAttribute("style", "border: 3px solid red");
     }  
+  } else {
+    var links = document.getElementsByTagName('a');
+
+    for (i = 0; i < links.length; i++) {
+      links[i].setAttribute("style", "border: 3px solid blue");
+    }
   }
+}
+
+function toggleScreenReaderStatus() {
+  let status = ''
+
+  if (!!Cookies.get('Screen-Reader-for-Accessibility-Assistant', 'Enabled')) {
+    Cookies.remove('Screen-Reader-for-Accessibility-Assistant');
+    status = "Screen reader for accessibility assistant is now disabled."
+  } else {
+    Cookies.set('Screen-Reader-for-Accessibility-Assistant', 'Enabled')
+    status = "Screen reader for accessibility assistant is now enabled."
+  }
+
+  let announceStatus = new SpeechSynthesisUtterance(status);
+  window.speechSynthesis.speak(announceStatus);
+
+  location.reload();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -67,6 +90,17 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   }, false);
+
+  // Toggle Screen Reader Button:
+  var toggleScreenReader = document.getElementById('toggleScreenReader');
+
+  toggleScreenReader.addEventListener('click', function() {
+    chrome.tabs.getSelected(null, function(tab) {
+      chrome.tabs.executeScript({
+        code: '('  + toggleScreenReaderStatus + ')()'
+      });
+    });
+  }, false);
 }, false);
 
 // Screen Reader:
@@ -74,25 +108,47 @@ $(document).keyup(function(e) {
   speechSynthesis.cancel();
   let element = '';
 
-  // If the button pressed is the Tab key.
-  if (e.key == 'Tab') {
-    if ($(e.target).attr('aria-label')) {
-      element += $(e.target).attr('aria-label');
-    } else if ($('label[for="' + $(e.target).attr('id') + '"]').text() != "") {
-      element += ". " + $('label[for="' + $(e.target).attr('id') + '"]').text();
-    } else {
-      element += $(e.target).text();
-    }
+  // If the user has the Screen Reader enabled.
+  if (!!Cookies.get('Screen-Reader-for-Accessibility-Assistant', 'Enabled')) {
+    // If the button pressed is the Tab key, or Shift+Tab.
+    if (e.key == 'Tab') {
+      $(e.target).css('box-shadow', '0 0 5px 5px #ffcb3d');
 
-    if ($(e.target)[0].nodeName == "A") {
-      element += ". Link";
-    } else if ($(e.target)[0].nodeName == "INPUT") {
-      element += ". Input";
-    } else if ($(e.target)[0].nodeName == "BUTTON" || $(e.target).attr('role') == 'button') {
-      element += ". Button";
-    }
+      setTimeout(function () {
+        $(e.target).css('box-shadow', '');
+      }, 1000);
 
-    let readElement = new SpeechSynthesisUtterance(element);
-    window.speechSynthesis.speak(readElement);
+      if ($(e.target).attr('aria-label')) {
+        element += $(e.target).attr('aria-label');
+      } else if ($(e.target).attr('title')) {
+        element += $(e.target).attr('title');
+      } else if ($('label[for="' + $(e.target).attr('id') + '"]').text()) {
+        element += $('label[for="' + $(e.target).attr('id') + '"]').text();
+      } else {
+        element += $(e.target).text();
+      }
+
+      if ($(e.target).attr('placeholder')) {
+        element += " with hint " + $(e.target).attr('placeholder');
+      }
+
+      if ($(e.target)[0].nodeName == "A") {
+        element += ". Link";
+      } else if ($(e.target)[0].nodeName == "INPUT") {
+        element += ". Input";
+      } else if ($(e.target)[0].nodeName == "BUTTON" || $(e.target).attr('role') == 'button') {
+        element += ". Button";
+        // Check if it has an aria-expanded, if it does, its a dropdown so read out the state
+      }
+
+      // Add another else if for "select"
+
+      let readElement = new SpeechSynthesisUtterance(element);
+      window.speechSynthesis.speak(readElement);
+    }
+  }
+
+  if (e.ctrlKey && (e.key == "q")) {
+    toggleScreenReaderStatus();
   }
 });

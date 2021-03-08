@@ -74,6 +74,18 @@ a:visited {
     margin-left: 30%;
 }
 
+#toggleScreenReader {
+    margin-left: 26%;
+}
+
 #version {
+    font-size: 10px;
+}
+
+#information {
     font-size: 12px;
+}
+
+#consent {
+    font-size: 11px;
 }
