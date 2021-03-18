@@ -6,6 +6,8 @@ body.dark header,
 body.dark nav,
 body.dark body nav,
 body.dark div,
+body.dark ul,
+body.dark ol,
 body.dark .panel-default .panel-heading,
 body.dark .panel-default .panel-body,
 body.dark .panel-default .panel-footer,
@@ -44,5 +46,5 @@ body.dark th,
 body.dark td,
 body.dark textarea,
 body.dark textarea:focus {
-    color: white; 
+    color: white;
 }
