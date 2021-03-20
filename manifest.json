@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Accessibility Assistant",
-  "description": "Designed for visually or hearing-impaired users.",
+  "description": "Designed to help visually-impaired users have a more natural web-browsing experience.",
   "version": "1.0.0",
   "icons": { "128": "icon_128.png" },
   "browser_action": {

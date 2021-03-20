@@ -209,6 +209,8 @@ $(document).keyup(function(e) {
         } else if ($(e.target)[0].nodeName == "BUTTON" || $(e.target).attr('role') == 'button') {
           element += ". Button";
         }
+
+        console.log(element)
   
         let readElement = new SpeechSynthesisUtterance(element);
         window.speechSynthesis.speak(readElement);

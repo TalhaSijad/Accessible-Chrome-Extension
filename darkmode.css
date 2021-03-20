@@ -2,10 +2,19 @@ body.dark {
     background: #292C35;
 }
 
+body.dark main,
 body.dark header,
 body.dark nav,
 body.dark body nav,
+body.dark body main nav,
+body.dark body main div nav,
+body.dark body div main div nav,
 body.dark div,
+body.dark div div,
+body.dark div div div,
+body.dark div div div div,
+body.dark div div div div div,
+body.dark div div div div div div,
 body.dark ul,
 body.dark ol,
 body.dark .panel-default .panel-heading,
