@@ -16,7 +16,6 @@
   "background": {
     "scripts": [
       "jquery.min.js",
-      "cookie.min.js",
       "popup.js"
     ],
     "css": [
@@ -29,7 +28,6 @@
       "matches": [ "<all_urls>" ],
       "js": [ 
         "jquery.min.js",
-        "cookie.min.js",
         "popup.js"
        ],
        "css": [
