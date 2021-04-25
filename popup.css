@@ -79,13 +79,10 @@ a:visited {
 }
 
 #version {
-    font-size: 10px;
+    font-size: 12px;
 }
 
 #information {
     font-size: 12px;
-}
-
-#consent {
-    font-size: 11px;
+    text-align: center;
 }

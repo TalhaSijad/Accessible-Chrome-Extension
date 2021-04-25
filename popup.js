@@ -112,30 +112,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }, false);
 }, false);
 
-// document.addEventListener("visibilitychange", function() {
-//   if (document.visibilityState === 'visible') {
-//     console.log("hello?")
-//     let title = new SpeechSynthesisUtterance("loaded mate");
-//     window.speechSynthesis.speak(title);
-//   }
-// });
-
-// function handleVisibilityChange() {
-//   if(document.hidden) {
-//     // the page is hidden
-//   } else {
-//     readPageTitle();
-//   }
-// }
-
-// $("#tabs").tabs({
-//   select: function(event, ui) {
-//       alert("PRESSED TAB!");
-//   }
-// });
-
-// document.addEventListener("visibilitychange", handleVisibilityChange, false);
-
 function readPageTitle() {
   speechSynthesis.cancel();
   let title = new SpeechSynthesisUtterance(document.title);
@@ -209,8 +185,6 @@ $(document).keyup(function(e) {
         } else if ($(e.target)[0].nodeName == "BUTTON" || $(e.target).attr('role') == 'button') {
           element += ". Button";
         }
-
-        console.log(element)
   
         let readElement = new SpeechSynthesisUtterance(element);
         window.speechSynthesis.speak(readElement);
